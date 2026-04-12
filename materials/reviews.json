@@ -1,0 +1,5 @@
+[
+      { "_id": "65f1f123456789abcdef5001", "userId": "65f1a123456789abcdef0001", "restaurantId": "65f1b123456789abcdef1001", "rating": 5, "comment": "ngon" },
+      { "_id": "65f1f123456789abcdef5002", "userId": "65f1a123456789abcdef0002", "restaurantId": "65f1b123456789abcdef1003", "rating": 4, "comment": "pizza ok" },
+      { "_id": "65f1f123456789abcdef5003", "userId": "65f1a123456789abcdef0003", "restaurantId": "65f1b123456789abcdef1004", "rating": 5, "comment": "tra sua ngon" }
+    ]

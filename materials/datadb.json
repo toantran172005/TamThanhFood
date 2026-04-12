@@ -1,0 +1,111 @@
+[
+  {
+    "collection": "users",
+    "data": [
+      { "name": "Chí Toàn", "email": "chitoan@gmail.com", "password": "123", "phone": "0909123456", "role": "USER", "address": "Quảng Nam" },
+      { "name": "Minh Tuấn", "email": "minhtuan@gmail.com", "password": "123", "phone": "0909654321", "role": "USER", "address": "Gia Lai" },
+      { "name": "Chi", "email": "chi@gmail.com", "password": "123", "phone": "0903122121", "role": "USER", "address": "Pleiku" },
+      { "name": "Dung", "email": "dung@gmail.com", "password": "123", "phone": "0904454545", "role": "USER", "address": "Pleiku" },
+      { "name": "Toni", "email": "toni@gmail.com", "password": "123", "phone": "0000000000", "role": "ADMIN", "address": "Tây Ninh" }
+    ]
+  },
+
+  {
+    "collection": "restaurants",
+    "data": [
+      { "name": "Phở 24", "address": "Tây Ninh", "phone": "0911111111", "rating": 4.5, "openTime": "06:00", "closeTime": "22:00" },
+      { "name": "Bún Bò Huế", "address": "Sài Gòn", "phone": "0922222222", "rating": 4.3, "openTime": "06:00", "closeTime": "21:00" },
+      { "name": "Pizza Home", "address": "Hà Nội", "phone": "0933333333", "rating": 4.7, "openTime": "10:00", "closeTime": "23:00" },
+      { "name": "Trà Sữa Mix", "address": "Đắk Lắk", "phone": "0944444444", "rating": 4.2, "openTime": "09:00", "closeTime": "22:30" }
+    ]
+  },
+
+  {
+    "collection": "foods",
+    "data": [
+      { "restaurantId": "65f1b123456789abcdef1001", "name": "Phở bò", "price": 40000, "category": "phở", "isAvailable": true },
+      { "restaurantId": "65f1b123456789abcdef1001", "name": "Phở gà", "price": 35000, "category": "phở", "isAvailable": true },
+      { "restaurantId": "65f1b123456789abcdef1002", "name": "Bún bò đặc biệt", "price": 45000, "category": "bún", "isAvailable": true },
+      { "restaurantId": "65f1b123456789abcdef1002", "name": "Bún bò tái nạm", "price": 35000, "category": "bún", "isAvailable": true },
+      { "restaurantId": "65f1b123456789abcdef1003", "name": "Pizza cheese", "price": 90000, "category": "pizza", "isAvailable": true },
+      { "restaurantId": "65f1b123456789abcdef1003", "name": "Pizza beef", "price": 95000, "category": "pizza", "isAvailable": true },
+      { "restaurantId": "65f1b123456789abcdef1004", "name": "Trà sữa chân trâu lục", "price": 30000, "category": "đồ uống", "isAvailable": true },
+      { "restaurantId": "65f1b123456789abcdef1004", "name": "Trà sữa chân trâu đen", "price": 32000, "category": "đồ uống", "isAvailable": true }
+    ]
+  },
+
+  {
+    "collection": "vouchers",
+    "data": [
+      { "code": "SALE10", "discountType": "PERCENT", "value": 10, "minOrder": 50000, "maxDiscount": 20000, "isActive": true },
+      { "code": "SALE20", "discountType": "PERCENT", "value": 20, "minOrder": 100000, "maxDiscount": 30000, "isActive": true },
+      { "code": "GIAM20K", "discountType": "FIXED", "value": 20000, "minOrder": 60000, "maxDiscount": 20000, "isActive": true },
+      { "code": "FREESHIP", "discountType": "FIXED", "value": 15000, "minOrder": 30000, "maxDiscount": 15000, "isActive": true }
+    ]
+  },
+
+  {
+    "collection": "cart", id cart là id của user
+    "data": [
+      {
+        "items": [
+          { "foodId": "65f1c123456789abcdef2001", "quantity": 2, "price": 40000 },
+          { "foodId": "65f1c123456789abcdef2003", "quantity": 1, "price": 45000 }
+        ]
+      },
+      {
+        "items": [
+          { "foodId": "65f1c123456789abcdef2005", "quantity": 1, "price": 90000 }
+        ]
+      }
+    ]
+  },
+
+  {
+    "collection": "orders",
+    "data": [
+      {
+        "userId": "65f1a123456789abcdef0001",
+        "restaurantId": "65f1b123456789abcdef1001",
+        "items": [
+          { "foodId": "65f1c123456789abcdef2001", "quantity": 2, "price": 40000 }
+        ],
+        "subtotal": 80000,
+        "discount": 10000,
+        "totalPrice": 70000,
+        "status": "PENDING"
+      },
+      {
+        "userId": "65f1a123456789abcdef0002",
+        "restaurantId": "65f1b123456789abcdef1003",
+        "items": [
+          { "foodId": "65f1c123456789abcdef2005", "quantity": 1, "price": 90000 }
+        ],
+        "subtotal": 90000,
+        "discount": 20000,
+        "totalPrice": 70000,
+        "status": "CONFIRMED"
+      },
+      {
+        "userId": "65f1a123456789abcdef0003",
+        "restaurantId": "65f1b123456789abcdef1004",
+        "items": [
+          { "foodId": "65f1c123456789abcdef2007", "quantity": 2, "price": 30000 }
+        ],
+        "subtotal": 60000,
+        "discount": 0,
+        "totalPrice": 60000,
+        "status": "DELIVERING"
+      }
+    ]
+  },
+
+  {
+    "collection": "reviews",
+    "data": [
+      { "userId": "65f1a123456789abcdef0001", "restaurantId": "65f1b123456789abcdef1001", "rating": 5, "comment": "ngon" },
+      { "userId": "65f1a123456789abcdef0002", "restaurantId": "65f1b123456789abcdef1003", "rating": 4, "comment": "pizza ok" },
+      { "userId": "65f1a123456789abcdef0003", "restaurantId": "65f1b123456789abcdef1004", "rating": 5, "comment": "tra sua ngon" }
+    ]
+  }
+]

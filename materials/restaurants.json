@@ -1,0 +1,6 @@
+[
+      { "name": "Phở 24", "address": "Tây Ninh", "phone": "0911111111", "rating": 4.5, "openTime": "06:00", "closeTime": "22:00" },
+      { "name": "Bún Bò Huế", "address": "Sài Gòn", "phone": "0922222222", "rating": 4.3, "openTime": "06:00", "closeTime": "21:00" },
+      { "name": "Pizza Home", "address": "Hà Nội", "phone": "0933333333", "rating": 4.7, "openTime": "10:00", "closeTime": "23:00" },
+      { "name": "Trà Sữa Mix", "address": "Đắk Lắk", "phone": "0944444444", "rating": 4.2, "openTime": "09:00", "closeTime": "22:30" }
+    ]

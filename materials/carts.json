@@ -1,0 +1,15 @@
+[
+      {
+        "_id": "65f1a123456789abcdef0001",
+        "items": [
+          { "foodId": "65f1c123456789abcdef2001", "quantity": 2, "price": 40000 },
+          { "foodId": "65f1c123456789abcdef2003", "quantity": 1, "price": 45000 }
+        ]
+      },
+      {
+        "_id": "65f1a123456789abcdef0002",
+        "items": [
+          { "foodId": "65f1c123456789abcdef2005", "quantity": 1, "price": 90000 }
+        ]
+      }
+    ]

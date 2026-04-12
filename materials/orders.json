@@ -1,0 +1,41 @@
+[
+      {
+        "_id": "65f1e123456789abcdef4001",
+        "userId": "65f1a123456789abcdef0001",
+        "restaurantId": "65f1b123456789abcdef1001",
+        "items": [
+          { "foodId": "65f1c123456789abcdef2001", "name": "Phở bò", "quantity": 2, "price": 40000, "note": "" }
+        ],
+        "subtotal": 80000,
+        "discount": 10000,
+        "totalPrice": 70000,
+        "status": "PENDING",
+		"note": "" 
+      },
+      {
+        "_id": "65f1e123456789abcdef4002",
+        "userId": "65f1a123456789abcdef0002",
+        "restaurantId": "65f1b123456789abcdef1003",
+        "items": [
+          { "foodId": "65f1c123456789abcdef2005", "name": "Pizza cheese", "quantity": 1, "price": 90000, "note": "" }
+        ],
+        "subtotal": 90000,
+        "discount": 20000,
+        "totalPrice": 70000,
+        "status": "CONFIRMED",
+		"note": "" 
+      },
+      {
+        "_id": "65f1e123456789abcdef4003",
+        "userId": "65f1a123456789abcdef0003",
+        "restaurantId": "65f1b123456789abcdef1004",
+        "items": [
+          { "foodId": "65f1c123456789abcdef2007", "name": "Trà sữa chân trâu lục", "quantity": 2, "price": 30000, "note": "" }
+        ],
+        "subtotal": 60000,
+        "discount": 0,
+        "totalPrice": 60000,
+        "status": "DELIVERING",
+		"note": "" 
+      }
+    ]

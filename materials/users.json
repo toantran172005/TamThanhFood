@@ -1,0 +1,7 @@
+[
+      { "name": "Chí Toàn", "email": "chitoan@gmail.com", "password": "123", "phone": "0909123456", "role": "USER", "address": "Quảng Nam" },
+      { "name": "Minh Tuấn", "email": "minhtuan@gmail.com", "password": "123", "phone": "0909654321", "role": "USER", "address": "Gia Lai" },
+      { "name": "Chi", "email": "chi@gmail.com", "password": "123", "phone": "0903122121", "role": "USER", "address": "Pleiku" },
+      { "name": "Dung", "email": "dung@gmail.com", "password": "123", "phone": "0904454545", "role": "USER", "address": "Pleiku" },
+      { "name": "Toni", "email": "toni@gmail.com", "password": "123", "phone": "0000000000", "role": "ADMIN", "address": "Tây Ninh" }
+]

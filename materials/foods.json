@@ -1,0 +1,10 @@
+[
+      { "_id": "65f1c123456789abcdef2001", "restaurantId": "65f1b123456789abcdef1001", "name": "Phở bò", "price": 40000, "category": "phở", "isAvailable": true },
+      { "_id": "65f1c123456789abcdef2002", "restaurantId": "65f1b123456789abcdef1001", "name": "Phở gà", "price": 35000, "category": "phở", "isAvailable": true },
+      { "_id": "65f1c123456789abcdef2003", "restaurantId": "65f1b123456789abcdef1002", "name": "Bún bò đặc biệt", "price": 45000, "category": "bún", "isAvailable": true },
+      { "_id": "65f1c123456789abcdef2004", "restaurantId": "65f1b123456789abcdef1002", "name": "Bún bò tái nạm", "price": 35000, "category": "bún", "isAvailable": true },
+      { "_id": "65f1c123456789abcdef2005", "restaurantId": "65f1b123456789abcdef1003", "name": "Pizza cheese", "price": 90000, "category": "pizza", "isAvailable": true },
+      { "_id": "65f1c123456789abcdef2006", "restaurantId": "65f1b123456789abcdef1003", "name": "Pizza beef", "price": 95000, "category": "pizza", "isAvailable": true },
+      { "_id": "65f1c123456789abcdef2007", "restaurantId": "65f1b123456789abcdef1004", "name": "Trà sữa chân trâu lục", "price": 30000, "category": "đồ uống", "isAvailable": true },
+      { "_id": "65f1c123456789abcdef2008", "restaurantId": "65f1b123456789abcdef1004", "name": "Trà sữa chân trâu đen", "price": 32000, "category": "đồ uống", "isAvailable": true }
+    ]
