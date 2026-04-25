@@ -1,29 +1,28 @@
 import React from "react";
 import "../css/Card_Notification.css";
 
-function Card_Notification() {
+function Card_Notification({id, title, description, time, date, image, action}) {
   return (
     <div className="card_notification">
       <div className="card_notification_info">
         <div className="card_notification_image">
-          <img src="/Bison_Burger.png" alt="" />
+          <img src={image} alt="" />
         </div>
 
         <div className="card_notification_description">
-          <h2>The order has been completed.</h2>
+          <h2>{title}</h2>
           <p>
-            Order #0D34987 has been completed. Please leave us a review of your
-            order.
+            {description}
           </p>
 
           <div>
-            <div className="time">12:00</div>
-            <div className="date">12/04/2026</div>
+            <div className="time">{time}</div>
+            <div className="date">{date}</div>
           </div>
         </div>
 
         <div className="card_notification_actions">
-          <button className="trash">Review</button>
+          <button className="trash">{action}</button>
         </div>
       </div>
     </div>

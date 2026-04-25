@@ -76,5 +76,8 @@
     font-size: 18px;
     position: absolute;
     bottom: 0;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
 }
 

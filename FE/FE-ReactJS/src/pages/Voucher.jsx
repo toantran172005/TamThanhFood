@@ -1,13 +1,13 @@
 import React from 'react'
 import "../../public/fontawesome-free-7.2.0-web/css/all.min.css";
-import Card_Notification from '../components/Card_Notification';
 import Header_2 from "../components/Header_2";
 import { Link } from "react-router-dom";
-import "../css/Notification.css";
+import "../css/Voucher.css";
+import Card_Notification from '../components/Card_Notification';
 
-function Notification() {
+function Voucher() {
 
-  const notifications = [
+  const vouchers = [
     {
       id: 1,
       title: "The order has been completed.",
@@ -23,8 +23,8 @@ function Notification() {
       description: "New vouchers for you. Please check your voucher box and use them now.",
       time: "12:00",
       date: "12/04/2026",
-      image: "/Grill_Chicken.png",
-      action: "Claim now",
+      image: "/Salad.png",
+      action: "Use it now",
     },
     {
       id: 3,
@@ -32,17 +32,17 @@ function Notification() {
       description: "Order has been cancelled by admin. Please check your order details and contact us if you have any questions.",
       time: "12:00",
       date: "12/04/2026",
-      image: "/Grill_Shrimp.png",
-      action: "Claim now",
+      image: "/Spring_Rolls.png",
+      action: "Complain",
     },
   ];
 
   return (
-    <div className="notification">
+    <div className="voucher">
 
-        <div className="notification_content">
+        <div className="voucher_content">
           <Header_2></Header_2>
-          <div className="notification_header">
+          <div className="voucher_header">
             <div className="back">
               <Link to="/">
                 <i className="fa-solid fa-arrow-left"></i>
@@ -51,13 +51,13 @@ function Notification() {
             </div>
 
             <div className="title">
-              <p>THÔNG BÁO</p>
+              <p>MÃ GIẢM GIÁ</p>
             </div>
           </div>
 
-          <div className="list_notification">
-            {notifications.map((notification) => (
-              <Card_Notification key={notification.id} {...notification} />
+          <div className="list_voucher">
+            {vouchers.map((voucher) => (
+              <Card_Notification key={voucher.id} {...voucher} />
             ))}
           </div>
 
@@ -66,4 +66,4 @@ function Notification() {
   )
 }
 
-export default Notification
+export default Voucher

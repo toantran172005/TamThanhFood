@@ -10,6 +10,8 @@ import HomePage from "./pages/HomePage";
 import Card_Order from "./components/Card_Order";
 import Order_History from "./pages/Order_History";
 import Notification from "./pages/Notification";
+import Voucher from "./pages/Voucher";
+import Setting from "./pages/Setting";
 
 function App() {
   return (
@@ -25,11 +27,11 @@ function App() {
           
           <Route path="categorys" />
 
-          <Route path="vouchers" />
+          <Route path="vouchers" element={<Voucher/>} />
 
           <Route path="notifications" element={<Notification/>}/>
 
-          <Route path="settings" />
+          <Route path="settings" element={<Setting/>} />
 
           <Route path="cart_detail" element={<Cart_Detail/>}/>
 
