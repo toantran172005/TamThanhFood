@@ -1,0 +1,80 @@
+.card_notification {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.card_notification_info {
+    display: flex;
+    flex: 1;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    width: 90%;
+}
+
+.card_notification_image {
+    width: 15%;
+    height: 110px;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.card_notification_image img {
+    width: 70%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card_notification_description {
+    padding: 10px 10px 10px 0px;
+    width: 70%;
+    position: relative;
+}
+
+.card_notification_description h2 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    color: #000;
+    font-weight: bold;
+}
+
+.card_notification_description p {
+    margin: 0 0 10px 0;
+    color: #000;
+    font-size: 18px;
+}
+
+.card_notification_description div {
+    font-size: 18px;
+    color: #FFA940;
+    display: inline-block;
+}
+
+.card_notification_description .time, .date{
+    margin: 0px 5px;
+}
+
+.card_notification_actions {
+    width: 10%;
+    padding: 0px 20px;
+    position: relative;
+}
+
+.card_notification_actions button {
+    margin: 5px;
+    padding: 5px 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: #FFA940;
+    color: #fff;
+    font-size: 18px;
+    position: absolute;
+    bottom: 0;
+}
+

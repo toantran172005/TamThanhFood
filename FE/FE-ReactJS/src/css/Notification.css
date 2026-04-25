@@ -1,0 +1,44 @@
+.notification{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 5%;
+}
+
+.notification .notification_content{
+    width: 90%;
+}
+
+.notification .notification_header{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.notification .notification_header .back{
+    font-size: 20px;
+    width: 10%;
+}
+
+.notification .notification_header .back a{
+    color: #000;
+    text-decoration: none;
+}
+
+.notification .notification_header .back i{
+    margin-right: 10px;
+}
+
+.notification .notification_header .title{
+    margin-left: 20px;
+    width: 80%;
+    text-align: center;
+}
+
+.notification .list_notification{
+    width: 100%;
+}
