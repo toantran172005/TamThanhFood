@@ -1,0 +1,50 @@
+.sort_filter {
+    display: flex;
+    padding: 20px 20px 0px 20px;
+    gap: 10px;
+    margin-top: 80px;
+}
+
+.sort_filter .title_left{
+    margin-left: 10px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.sort_filter .filter_right{
+    position: absolute;
+    right: 3%;
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+}
+
+.sort_filter .filter_right select {
+    margin-left: 5px;
+    margin-right: 10px;
+    padding: 5px;
+    transition: color 0.3s ease;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.sort_filter .filter_right a {
+    color: #FFA940;
+    font-size: 22px;
+}
+
+
+.list_card_food {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;  
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .list_card_food {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

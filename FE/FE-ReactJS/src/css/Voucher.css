@@ -1,0 +1,44 @@
+.voucher{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 5%;
+}
+
+.voucher .voucher_content{
+    width: 90%;
+}
+
+.voucher .voucher_header{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.voucher .voucher_header .back{
+    font-size: 20px;
+    width: 10%;
+}
+
+.voucher .voucher_header .back a{
+    color: #000;
+    text-decoration: none;
+}
+
+.voucher .voucher_header .back i{
+    margin-right: 10px;
+}
+
+.voucher .voucher_header .title{
+    margin-left: 20px;
+    width: 80%;
+    text-align: center;
+}
+
+.voucher .list_voucher{
+    width: 100%;
+}

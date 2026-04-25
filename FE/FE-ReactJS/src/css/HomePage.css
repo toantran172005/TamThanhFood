@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column; 
+  min-height: 100vh;
+  width: 100%;
+}
+
+.app-container .top{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    width: 100%;
+}
+
+.app-container .navbar {
+    flex: 0 0 auto; 
+    width: 6%;
+    border-right: 1px solid #D9D9D9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.app-container .header-content {
+    flex: 1; 
+    width:100%;
+    margin-left: 6%;
+}
+
+.app-container .header-content .sort_filter {
+    display: flex;
+    padding: 20px 20px 0px 20px;
+    gap: 10px;
+    margin-top: 80px;
+}
+
+.app-container .header-content .sort_filter .title_left{
+    margin-left: 10px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.app-container .header-content .sort_filter .filter_right{
+    position: absolute;
+    right: 3%;
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+}
+
+.app-container .header-content .sort_filter .filter_right select {
+    margin-left: 5px;
+    margin-right: 10px;
+    padding: 5px;
+    transition: color 0.3s ease;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.app-container .header-content .sort_filter .filter_right a {
+    color: #FFA940;
+    font-size: 22px;
+}
+
+.app-container .footer {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: #fafafa;
+  border-top: 2px solid #D9D9D9;
+}
+
+.footer-top-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-top-content-left {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-top-content-left p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.footer-top-content-right {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.footer-top-content-right i {
+  font-size: 24px;
+  color: #FFA940;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.footer-top-content-right i:hover {
+  color: #ff8c00;
+  transform: scale(1.15);
+}
+
+.footer-top-content-right a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-bottom-content {
+  text-align: center;
+  padding: 15px;
+  background-color: #f1f1f1;
+  border-top: 1px solid #D9D9D9;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}

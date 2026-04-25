@@ -1,0 +1,98 @@
+.setting{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 5%;
+}
+
+.setting .setting_content{
+    width: 90%;
+}
+
+.setting .setting_header{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.setting .setting_header .back{
+    font-size: 20px;
+    width: 10%;
+}
+
+.setting .setting_header .back a{
+    color: #000;
+    text-decoration: none;
+}
+
+.setting .setting_header .back i{
+    margin-right: 10px;
+}
+
+.setting .setting_header .title{
+    margin-left: 20px;
+    width: 80%;
+    text-align: center;
+}
+
+.setting .setting_body{
+    margin-top: 20px;
+}
+
+.setting .setting_body p{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding: 5px 0px
+}
+
+.setting .setting_body ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0;
+}
+
+.setting .setting_body li{
+    padding: 5px 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.setting .setting_body li a{
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.setting .setting_body li span{
+    font-size: 18px;
+    color: #333;
+}
+
+.setting .setting_body li .language{
+    position: absolute;
+    left: 8%;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.setting .setting_body li .mode{
+    position: absolute;
+    left: 8%;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.setting .setting_body li:last-child{
+    border-bottom: none;
+}
+
+
