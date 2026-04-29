@@ -1,7 +1,14 @@
 import React from 'react'
 import "../css/Card_Order.css"
+import { useNavigate } from 'react-router-dom'
 
 function Card_Order() {
+    const navigate = useNavigate();
+
+    const handleToDetail = () => {
+        navigate("/orderdetail");
+    }   
+
   return (
     <div className='cart_order'>
         <div className='cart_order_left'>
@@ -22,7 +29,9 @@ function Card_Order() {
             </div>
 
             <div className='cart_order_actions'>
-                <button className='detail'>Detail</button>
+                <button className='detail' onClick={handleToDetail}>
+                    Detail
+                </button>
                 <button className='re_order'>Re-Order</button>
             </div>
         </div>

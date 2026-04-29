@@ -1,0 +1,64 @@
+.checkout-page-container {
+  padding: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #111;
+}
+
+.checkout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.checkout-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+.spacer {
+  width: 70px; /* Cân bằng với nút Back để Title nằm giữa */
+}
+
+/* Layout dưới dạng Grid */
+.checkout-bottom-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .checkout-bottom-grid {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  
+  .left-column {
+    flex: 1;
+    padding-right: 32px;
+    border-right: 1.5px dashed #9ca3af; /* Đường gạch đứt dọc theo ảnh */
+  }
+  
+  .right-column {
+    flex: 1;
+    padding-left: 32px;
+  }
+}

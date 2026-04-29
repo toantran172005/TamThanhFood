@@ -1,0 +1,83 @@
+.order-list-card {
+  border: 1px solid #9ca3af;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.order-item-row {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+}
+
+.order-item-row.border-bottom {
+  border-bottom: 1px dashed #9ca3af;
+}
+
+.item-info-col {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.item-image {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.item-size {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.item-price-col {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-qty {
+  font-size: 15px;
+  color: #4b5563;
+}
+
+.item-price-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f97316; /* Cam */
+}
+
+/* Tablet & Desktop */
+@media (min-width: 768px) {
+  .order-item-row {
+    flex-direction: row;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .item-info-col {
+    flex: 1.5;
+    padding: 16px;
+    border-right: 1.5px dashed #9ca3af; /* Gạch đứt dọc chia 2 phần */
+  }
+
+  .item-price-col {
+    flex: 1;
+    padding: 16px 24px;
+  }
+}
