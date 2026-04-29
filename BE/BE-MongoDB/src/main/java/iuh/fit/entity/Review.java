@@ -17,7 +17,8 @@ public class Review {
     @Id
     ObjectId id;
     ObjectId userId;
+    ObjectId foodId;
     Double rating;
     String comment;
-    LocalDate createAt;
+    LocalDate createdAt;
 }

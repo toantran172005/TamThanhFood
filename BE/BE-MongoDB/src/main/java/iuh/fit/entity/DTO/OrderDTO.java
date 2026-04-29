@@ -1,5 +1,6 @@
 package iuh.fit.entity.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.bson.types.ObjectId;
 
@@ -17,5 +18,7 @@ public class OrderDTO {
     Double discount;
     Double totalPrice;
     String status;
+    String payment;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     LocalDate createdAt;
 }

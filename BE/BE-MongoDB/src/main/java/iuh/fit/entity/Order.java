@@ -27,6 +27,6 @@ public class Order {
     Double discount;
     Double totalPrice;
     String status;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    String payment;
     LocalDate createdAt;
 }
