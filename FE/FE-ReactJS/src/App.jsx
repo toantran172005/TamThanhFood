@@ -12,32 +12,44 @@ import Order_History from "./pages/Order_History";
 import Notification from "./pages/Notification";
 import Voucher from "./pages/Voucher";
 import Setting from "./pages/Setting";
+import Auth from "./pages/AuthForm";
+import ProtectedRoute from "./components/ProtectedRoute";
+import UserProfilePage from "./pages/UserProfile";
+import FoodDetailPage from "./pages/FoodDetail";
+import CheckoutPage from "./pages/CheckOut";
+import OrderDetail from "./pages/OrderDetail"
+import WaitForOrder from "./pages/WaitForOrder";
+import PaymentQRCodePage from "./pages/PaymentQRCode";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Route cha*/}
-        <Route path="/" element={<HomePage />}>
-          
-          {/* index: Nghĩa là đường dẫn mặc định "/" (trang chủ) */}
-          <Route index element={<List_Card_Food />} />
-          
-          <Route path="orders_history" element={<Order_History/>}/>
-          
-          <Route path="categorys" />
 
-          <Route path="vouchers" element={<Voucher/>} />
+        {/* Route login (public) */}
+        <Route path="/Auth" element={<Auth />} />
 
-          <Route path="notifications" element={<Notification/>}/>
+        {/* Route cần đăng nhập */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<HomePage />}>
+            
+            <Route index element={<List_Card_Food />} />
 
-          <Route path="settings" element={<Setting/>} />
+            <Route path="orders_history" element={<Order_History />} />
+            <Route path="vouchers" element={<Voucher />} />
+            <Route path="notifications" element={<Notification />} />
+            <Route path="settings" element={<Setting />} />
+            <Route path="cart_detail" element={<Cart_Detail />} />
+            <Route path="information_user" element={<UserProfilePage />} />
+            <Route path="foods/:id" element={<FoodDetailPage />} />
+            <Route path="checkout" element={<CheckoutPage />} />
+            <Route path="orderdetail" element={<OrderDetail/>}/>
+            <Route path="waitfororder/:orderId" element={<WaitForOrder />} />
+            <Route path="payment-qr" element={<PaymentQRCodePage />} />
 
-          <Route path="cart_detail" element={<Cart_Detail/>}/>
-
-          <Route path="information_user" />
-          
+          </Route>
         </Route>
+
       </Routes>
     </BrowserRouter>
   )

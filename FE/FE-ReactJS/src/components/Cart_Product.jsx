@@ -5,9 +5,9 @@ import "../../public/fontawesome-free-7.2.0-web/css/all.min.css";
 function Cart_Product() {
   return (
     <div className='cart_product'>
-        <div className='checkbox'>
+        {/* <div className='checkbox'>
             <input type="checkbox" name="cart_product" id="" />
-        </div>
+        </div> */}
 
         <div className='cart_product_info'>
             <div className='cart_product_image'>

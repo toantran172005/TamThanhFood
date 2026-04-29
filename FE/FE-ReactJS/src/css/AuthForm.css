@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+.auth-wrapper {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* KHUNG CHÍNH */
+.container {
+  position: relative;
+  width: 900px;
+  max-width: 100%;
+  height: 550px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  overflow: hidden;
+}
+
+h1 {
+  font-weight: 500;
+  margin: 0 0 15px;
+  color: #333;
+  line-height: 1.5;
+  font-size: 32px;
+  white-space: nowrap;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span.subtitle {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+a.forgot-password {
+  color: #777;
+  font-size: 13px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+/* NÚT BẤM CHUNG */
+button.submit-btn {
+  border-radius: 5px;
+  border: none;
+  background: linear-gradient(to right, #ff5e62, #ff9966);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button.submit-btn:active {
+  transform: scale(0.95);
+}
+
+/* NÚT BẤM TRONG OVERLAY */
+button.ghost-btn {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s, color 0.3s;
+}
+
+button.ghost-btn:hover {
+  background: #ffffff;
+  color: #ff5e62;
+}
+
+/* FORM VÀ INPUT */
+form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+input {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+  font-family: inherit;
+  outline: none;
+  color: black;
+}
+
+/* BỐ CỤC 2 KHUNG FORM */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: all 0.6s ease-in-out;
+}
+
+/* Form Sign In nằm mặc định ở bên PHẢI */
+.sign-in-container {
+  left: 50%;
+  z-index: 2;
+}
+
+/* Form Sign Up nằm mặc định ở bên TRÁI (bị ẩn) */
+.sign-up-container {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* ANIMATION KHI CLICK SANG SIGN UP */
+.container.sign-up-mode .sign-in-container {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.container.sign-up-mode .sign-up-container {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* ================= OVERLAY CONTAINER ================= */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out, border-radius 0.6s ease-in-out;
+  z-index: 100;
+  /* Viền cong ở bên phải khi ở màn hình Sign In */
+  border-radius: 0 150px 150px 0; 
+}
+
+/* Khi sang màn Sign Up, Overlay trượt sang phải và đảo viền cong sang trái */
+.container.sign-up-mode .overlay-container {
+  transform: translateX(100%);
+  border-radius: 150px 0 0 150px;
+}
+
+/* NỀN CỦA OVERLAY (Gấp đôi width để slide qua lại) */
+.overlay {
+  background: linear-gradient(to right, #ff5e62, #ff9966);
+  color: #ffffff;
+  position: relative;
+  left: 0;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Khi panel ngoài trượt đi, panel trong kéo giật lại 1/2 để background trông đứng im */
+.container.sign-up-mode .overlay {
+  transform: translateX(-50%);
+}
+
+/* NỘI DUNG CHỮ TRONG OVERLAY */
+.overlay-panel {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel h1 {
+  color: #ffffff;
+}
+
+/* Panel trái chứa chữ cho màn Sign In */
+.overlay-left {
+  left: 0;
+  transform: translateX(0);
+}
+
+.container.sign-up-mode .overlay-left {
+  transform: translateX(-20%);
+}
+
+/* Panel phải chứa chữ cho màn Sign Up */
+.overlay-right {
+  right: 0;
+  transform: translateX(20%);
+}
+
+.container.sign-up-mode .overlay-right {
+  transform: translateX(0);
+}
+
+/* SOCIAL ICONS */
+.social-container {
+  margin: 15px 0 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-container a {
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 40px;
+  width: 40px;
+  color: #333;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.social-container a:hover {
+  background-color: #f4f4f4;
+  border-color: #ff5e62;
+  color: #ff5e62;
+}

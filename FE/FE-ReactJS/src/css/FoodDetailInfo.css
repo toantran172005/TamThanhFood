@@ -1,0 +1,177 @@
+.food-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.food-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 12px 0;
+}
+
+.food-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stars-wrapper {
+  display: flex;
+  gap: 2px;
+}
+
+.star-icon {
+  color: #e5e7eb; /* Màu xám cho sao trống */
+}
+
+.star-icon.filled {
+  color: #f97316; /* Màu cam cho sao có điểm */
+}
+
+.rating-text {
+  font-size: 15px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.food-price {
+  font-size: 26px;
+  font-weight: 700;
+  color: #f97316; /* Cam */
+  margin-bottom: 20px;
+}
+
+.food-description, .food-ingredients {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+}
+
+/* Quantity Selector (Style theo đúng ảnh: [+] [1] [-] màu cam) */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.qty-btn {
+  background-color: #f97316;
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-display {
+  font-size: 18px;
+  font-weight: 600;
+  min-width: 40px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+/* Size & Action Buttons */
+.actions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.size-selector-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.size-label {
+  font-weight: 700;
+  font-size: 16px;
+  color: #111;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.size-select {
+  width: 100%;
+  appearance: none; /* Ẩn mũi tên mặc định */
+  padding: 12px 40px 12px 16px;
+  border: 1px solid #6b7280; /* Viền tối màu giống ảnh */
+  border-radius: 8px;
+  font-size: 15px;
+  color: #111;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Mô phỏng style "Median (default)" có nền xám như trong ảnh */
+.size-select option[value="median"] {
+  background-color: #e5e7eb;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Để click xuyên qua mũi tên */
+}
+
+.action-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-primary {
+  background-color: #fb923c;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #f97316;
+}
+
+/* Desktop Actions Grid (Select bên trái, Nút bấm bên phải) */
+@media (min-width: 768px) {
+  .actions-section {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .size-selector-wrapper {
+    flex: 1.2;
+  }
+
+  .action-buttons-wrapper {
+    flex: 1;
+    margin-top: 28px; /* Đẩy 2 nút xuống cho ngang hàng với select box */
+  }
+}

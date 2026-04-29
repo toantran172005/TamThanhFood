@@ -1,0 +1,119 @@
+.payment-details-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: black;
+}
+
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.divider-dashed {
+  border-top: 1.5px dashed #9ca3af;
+  margin: 8px 0 16px 0;
+}
+
+.total-row {
+  align-items: center;
+}
+
+.total-label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.total-price-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.total-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ef4444; /* Đỏ */
+}
+
+.tax-note {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ================= FORM VOUCHER & TEXTAREA ================= */
+
+.voucher-form {
+  display: flex;
+  flex-direction: row !important; /* QUAN TRỌNG: Ép buộc nằm ngang, chống CSS global đè */
+  align-items: center;
+  margin-top: 16px;
+  border: 1px solid #9ca3af;
+  border-radius: 6px; 
+  height: 46px; /* Khóa cứng chiều cao */
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden; /* Cắt bỏ những phần bị tràn ra ngoài */
+}
+
+.voucher-input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  padding: 0 12px 0 16px;
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  background: transparent;
+  min-width: 0; /* QUAN TRỌNG: Ngăn thẻ input phình to đẩy văng icon ra ngoài */
+}
+
+.voucher-divider {
+  height: 24px; 
+  width: 0px;
+  border-left: 1.5px dashed #ccc;
+  margin: 0;
+  display: block;
+}
+
+.voucher-btn {
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0 16px; /* Chừa không gian cho icon */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hiệu ứng hover cho icon vé bớt cứng nhắc */
+.voucher-btn:hover svg path[fill="#5F5F5F"] {
+  fill: #4b5563; 
+}
+
+.note-textarea {
+  margin-top: 16px;
+  width: 100%;
+  border: 1.5px solid #9ca3af;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  font-family: inherit; /* FIX LỖI SAI FONT CHỮ */
+  outline: none;
+  resize: vertical; /* Cho phép user kéo chiều dọc, không cho kéo ngang */
+  box-sizing: border-box;
+}
+
+.note-textarea:focus, .voucher-input:focus {
+  border-color: #f97316; /* Viền màu cam khi click vào */
+}
