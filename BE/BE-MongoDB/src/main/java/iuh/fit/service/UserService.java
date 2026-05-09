@@ -16,6 +16,11 @@ public class UserService {
     final UserRepository userRepository;
     final ConvertData convertData;
 
+    public UserDTO getUserDetails(ObjectId userId) {
+        User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("Không tìm thấy user!"));
+        return convertData.convertUserToUserDTO(user);
+    }
+
     public UserDTO findUserByEmailAndPassword(String email, String password) {
         Optional<User> userOptional = userRepository.findUserByEmailAndPassword(email, password);
         if (userOptional.isPresent()) {
