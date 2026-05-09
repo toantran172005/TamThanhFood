@@ -6,6 +6,7 @@ import iuh.fit.entity.User;
 import iuh.fit.service.UserService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,12 @@ public class UserController {
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
         UserDTO newUser = userService.updateUser(userDTO);
         return new ResponseEntity<>(newUser, HttpStatus.OK);
+    }
+
+    @GetMapping("/details/{id}")
+    public ResponseEntity<UserDTO> getUserDetails(@PathVariable ObjectId id) {
+        UserDTO userDTO = userService.getUserDetails(id);
+        return ResponseEntity.ok(userDTO);
     }
 
 }
