@@ -13,7 +13,7 @@ import Notification from "./pages/Notification";
 import Voucher from "./pages/Voucher";
 import Setting from "./pages/Setting";
 import Auth from "./pages/AuthForm";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoutes from "./components/ProtectRoutes";
 import UserProfilePage from "./pages/UserProfile";
 import FoodDetailPage from "./pages/FoodDetail";
 import CheckoutPage from "./pages/CheckOut";
@@ -30,7 +30,7 @@ function App() {
         <Route path="/Auth" element={<Auth />} />
 
         {/* Route cần đăng nhập */}
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<HomePage />}>
             
             <Route index element={<List_Card_Food />} />

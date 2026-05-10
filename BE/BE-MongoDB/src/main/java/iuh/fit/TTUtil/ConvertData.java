@@ -38,10 +38,14 @@ public class ConvertData {
     }
 
     public UserDTO convertUserToUserDTO(User user) {
-        return new UserDTO(user.getId().toString(),
-                user.getName(),user.getImage(),
-                user.getEmail(), user.getPhone(),
-                user.getAddress());
+        UserDTO dto = new UserDTO();
+        dto.setUserId(user.getId().toHexString());
+        dto.setName(user.getName());
+        dto.setPhone(user.getPhone());
+        dto.setEmail(user.getEmail());
+        dto.setImage(user.getImage());
+        dto.setAddress(user.getAddress());
+        return dto;
     }
 
     public OrderDTO convertOrderToOrderDTO(Order order) {

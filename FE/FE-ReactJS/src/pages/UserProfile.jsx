@@ -3,40 +3,72 @@ import { Link } from 'react-router-dom';
 import UserInfoCard from '../components/UserInfoCard';
 import AddressListCard from '../components/AddressListCard';
 import '../css/UserProfile.css';
+import { useRecoilValue } from 'recoil';
+import userApi from '../api/userApi';
+import { userState } from '../recoil/userState';
 
 const UserProfilePage = () => {
-  // ================= STATE & MOCK DATA =================
-  const [userInfo, setUserInfo] = useState(null);
+  
+  const currentUser = useRecoilValue(userState);
+  const [userInfo, setUserInfo] = useState(
+    {
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      img: ''
+    }
+  );
   const [addresses, setAddresses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // ================= EFFECTS =================
   useEffect(() => {
-    // TODO: fetch data from Spring Boot API
-    // const fetchProfile = async () => {
-    //   const response = await axios.get('/api/v1/user/profile');
-    //   setUserInfo(response.data.user);
-    //   setAddresses(response.data.addresses);
-    // }
-    
-    // Mock data for UI development
-    setTimeout(() => {
-      setUserInfo({
-        id: 1,
-        name: 'John Smith',
-        email: 'john@gmail.com',
-        phone: '0987654321',
-        address: '10 Nguyen Van Bao Street, Hanh Thong Ward, HCM City',
-        avatar: 'https://i.pravatar.cc/150?img=11'
-      });
+    // Để ông tự kiểm tra xem đăng nhập đã lấy được id chưa nhé:
+    console.log("Current User trong Recoil:", currentUser);
 
-      setAddresses([
-        { id: 1, name: 'John', phone: '0987654321', address: '10 Nguyen Van Bao Street, Hanh Thong Ward, HCM City' },
-        { id: 2, name: 'Tom', phone: '0987612345', address: '10 Nguyen Van Dung Street, Hanh Thong Ward, HCM City' }
-      ]);
-      setIsLoading(false);
-    }, 300);
-  }, []);
+    const fetchProfileData = async () => {
+      if (!currentUser.userId) {
+        setIsLoading(false);
+        return;
+      }
+      try {
+        setIsLoading(true);
+        const data = await userApi.getUserDetails(currentUser.userId);
+        
+        console.log("Dữ liệu lấy từ API:", data); 
+        
+        setUserInfo({
+          name: data.name || '',
+          email: data.email || '',
+          phone: data.phone || '',
+
+          address: (data.address && data.address.length > 0) ? data.address[0] : '',
+          avatar: data.image || 'https://i.pravatar.cc/150?img=11' 
+        });
+        
+
+        if (data.address && Array.isArray(data.address)) {
+          const formattedAddresses = data.address.map((addrStr, index) => ({
+             id: index,
+             name: data.name,     // Lấy tạm tên user
+             phone: data.phone,   // Lấy tạm số điện thoại
+             address: addrStr     // Chuỗi địa chỉ từ mảng
+          }));
+          setAddresses(formattedAddresses);
+        } else {
+          setAddresses([]);
+        }
+
+      } catch (error) {
+        console.error('Failed to fetch user profile:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProfileData();
+  }, [currentUser.userId]);
 
   // ================= HANDLERS =================
   const handleUpdateProfile = (updatedData) => {
