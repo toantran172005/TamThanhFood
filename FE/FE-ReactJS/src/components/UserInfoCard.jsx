@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/UserInfoCard.css';
 
 const UserInfoCard = ({ user, onUpdate }) => {
@@ -9,6 +9,14 @@ const UserInfoCard = ({ user, onUpdate }) => {
     phone: user?.phone || '',
     address: user?.address || ''
   });
+
+  useEffect(() => {
+    setFormData({
+      email: user?.email || '',
+      phone: user?.phone || '',
+      address: user?.address || ''
+    });
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

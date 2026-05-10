@@ -19,6 +19,9 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<UserDTO> userLogin(@RequestBody LoginRequest login) {
+        System.out.println("Email nhận từ React: [" + login.getEmail() + "]");
+        System.out.println("Pass nhận từ React: [" + login.getPassword() + "]");
+
         UserDTO userDTO = userService.findUserByEmailAndPassword(login.getEmail(), login.getPassword());
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }

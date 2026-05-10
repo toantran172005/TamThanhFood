@@ -1,21 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/AuthForm.css';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6'; 
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { userState } from '../recoil/userState';
+import authApi from '../api/userApi';
+import { useState } from 'react';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
+  const setUserInfo = useSetRecoilState(userState);
 
-  const handleSignIn = (e) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignIn = async(e) => {
     e.preventDefault();
-    
-    // Giả lập đăng nhập thành công
-    localStorage.setItem("isLogin", "true");
 
-    // Chuyển hướng về trang chủ sau khi đăng nhập thành công
-    navigate("/");
+    console.log("Dữ liệu chuẩn bị gửi đi: ", {email, password});
+
+    try {
+      const response = await authApi.login(email.trim(), password.trim());
+
+      console.log("Kết quả từ API Login: ", response);
+      const realUserId = response.userId || response.data?.userId;
+
+      // chặn nếu không lấy được userId từ response
+      if (!realUserId) {
+        alert("Lỗi: Đăng nhập thành công nhưng không tìm thấy ID của User từ Backend!");
+        return; 
+      }
+
+      // Ghi dữ liệu chuẩn vào Local Storage
+      localStorage.setItem("isLogin", "true");
+      localStorage.setItem("userId", realUserId);
+
+      // Cập nhật state Global
+      setUserInfo({
+        userId: realUserId,
+        isLogin: true,
+      });
+
+      // Điều hướng về trang chủ sau khi đăng nhập thành công
+      navigate("/");
+
+    } catch (error) {
+      console.error('Login failed:', error);
+      alert('Tài khoản hoặc mật khẩu không đúng. Vui lòng thử lại.');
+    }
   };
 
   return (
@@ -49,8 +83,8 @@ const Auth = () => {
               <a href="#" className="social"><FaGoogle /></a>
             </div>
             <span className="subtitle">Use your account?</span>
-            <input type="email" placeholder="Email or username" />
-            <input type="password" placeholder="Password" />
+            <input type="email" placeholder="Email or username" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <a href="#" className="forgot-password">Forgot your password?</a>
             <button className="submit-btn">SIGN IN</button>
           </form>

@@ -8,27 +8,12 @@ const axiosClient = axios.create({
   },
 });
 
-axiosClient.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
 axiosClient.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response.data; 
   },
   (error) => {
-    if (error.response && error.response.status === 401) {
-      console.error('Token hết hạn hoặc không hợp lệ!');
-    }
     return Promise.reject(error);
   }
 );
