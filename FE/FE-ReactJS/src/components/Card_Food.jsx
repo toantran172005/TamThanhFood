@@ -1,22 +1,43 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Card_Food.css";
+import cartApi from "../api/cartApi";
 
-const Card_Food = ({ id, name, price, description, image, rating }) => {
+const Card_Food = ({ foodId, name, price, description, image, rating }) => {
   const navigate = useNavigate();
 
-  // 1. Hàm xử lý khi click vào bất kỳ đâu trên Card -> Chuyển đến trang Detail
   const handleGoToDetail = () => {
-    // food.id là ID thực tế từ database (ví dụ: 1, 2, 3...)
-    navigate(`/food/${id}`);
+    navigate(`/food/${foodId}`);
   };
 
-  // 2. Hàm xử lý khi click MUA NGAY -> Thêm vào giỏ, KHÔNG chuyển trang
-  const handleAddToCart = (e) => {
-    e.stopPropagation(); // QUAN TRỌNG: Ngăn sự kiện click lan ngược lên thẻ cha (handleGoToDetail)
-    
-    // TODO: Thực hiện logic thêm vào giỏ hàng (gọi API, dispatch Redux...)
-    console.log(`Đã thêm món ${name} vào giỏ hàng!`);
+  const handleAddToCart = async (e) => {
+    e.stopPropagation(); 
+
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      alert("Vui lòng đăng nhập để thêm vào giỏ hàng!");
+      navigate("/Auth");
+      return;
+    }
+
+    try {
+      const payload = {
+        userId: userId,
+        foodId: foodId,
+        foodName: name,
+        image: image,
+        quantity: 1,
+        price: price,
+        size: "M", 
+        note: ""
+      };
+
+      await cartApi.addToCart(payload);
+      alert(`Đã thêm ${name} vào giỏ hàng thành công!`);
+    } catch (error) {
+      console.error("Lỗi khi thêm vào giỏ hàng:", error);
+      alert("Thêm vào giỏ hàng thất bại!");
+    }
   };
 
 

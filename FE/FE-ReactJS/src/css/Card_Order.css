@@ -20,6 +20,12 @@
     font-weight: bold;
 }
 
+.cart_order_info p{
+    font-weight: bold;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
 .cart_order_info .order_id{
     margin-right: 20px;
 }

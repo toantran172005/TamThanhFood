@@ -35,6 +35,12 @@
     text-align: center;
 }
 
+.cart_detail .cart_detail_header .title p{
+    font-weight: bold;
+    font-size: 24px;
+    margin: 5px 0;
+}
+
 .cart_detail .cart_detail_content{
     width: 90%;
 }

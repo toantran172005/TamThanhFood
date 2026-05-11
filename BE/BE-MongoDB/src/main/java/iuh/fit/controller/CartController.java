@@ -38,4 +38,10 @@ public class CartController {
         return new ResponseEntity<>(updatedCart, HttpStatus.OK);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<CartDTO> updateQuantity(@RequestBody AddToCartDTO cartDTO) {
+        CartDTO updatedCart = cartService.updateCartItemQuantity(cartDTO);
+        return new ResponseEntity<>(updatedCart, HttpStatus.OK);
+    }
+
 }

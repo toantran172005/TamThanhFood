@@ -84,4 +84,25 @@ public class CartService {
         return convertData.convertCartToCartDTO(savedCart);
     }
 
+    public CartDTO updateCartItemQuantity(AddToCartDTO dto) {
+        ObjectId userObjectId = new ObjectId(dto.getUserId());
+
+        Cart cart = cartRepository.findByUserId(userObjectId)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy giỏ hàng!"));
+
+        Optional<OrderItem> existingItem = cart.getItems().stream()
+                .filter(item -> item.getFoodId().equals(dto.getFoodId()))
+                .filter(item -> item.getSize().equals(dto.getSize()))
+                .findFirst();
+
+        if (existingItem.isPresent()) {
+            existingItem.get().setQuantity(dto.getQuantity());
+        } else {
+            throw new RuntimeException("Sản phẩm không tồn tại trong giỏ hàng!");
+        }
+
+        Cart savedCart = cartRepository.save(cart);
+        return convertData.convertCartToCartDTO(savedCart);
+    }
+
 }
