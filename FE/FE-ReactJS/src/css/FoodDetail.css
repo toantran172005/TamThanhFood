@@ -1,0 +1,77 @@
+/* ================= MOBILE FIRST BASE ================= */
+.food-detail-page {
+  padding: 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 20px;
+}
+
+.back-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Layout Mobile: Xếp dọc */
+.detail-main-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.food-image-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.food-main-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+/* ================= RESPONSIVE ================= */
+/* Tablet */
+@media (min-width: 768px) {
+  .food-detail-page {
+    padding: 24px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .food-detail-page {
+    padding: 32px 40px;
+  }
+
+  .detail-main-grid {
+    display: grid;
+    /* Cột trái chứa ảnh chiếm 55%, cột phải chứa Info chiếm 45% */
+    grid-template-columns: 5.5fr 4.5fr; 
+    gap: 40px;
+    align-items: flex-start;
+  }
+}

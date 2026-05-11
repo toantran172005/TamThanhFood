@@ -1,5 +1,6 @@
 package iuh.fit.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,4 @@ public class Voucher {
     Double maxDiscount;
     LocalDate expiredAt;
     Boolean isActive;
-
 }

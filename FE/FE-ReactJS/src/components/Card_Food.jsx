@@ -1,9 +1,48 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/Card_Food.css";
+import cartApi from "../api/cartApi";
 
-function Card_Food({ id, name, price, description, image, rating }) {
+const Card_Food = ({ foodId, name, price, description, image, rating }) => {
+  const navigate = useNavigate();
+
+  const handleGoToDetail = () => {
+    navigate(`/food/${foodId}`);
+  };
+
+  const handleAddToCart = async (e) => {
+    e.stopPropagation(); 
+
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      alert("Vui lòng đăng nhập để thêm vào giỏ hàng!");
+      navigate("/Auth");
+      return;
+    }
+
+    try {
+      const payload = {
+        userId: userId,
+        foodId: foodId,
+        foodName: name,
+        image: image,
+        quantity: 1,
+        price: price,
+        size: "M", 
+        note: ""
+      };
+
+      await cartApi.addToCart(payload);
+      alert(`Đã thêm ${name} vào giỏ hàng thành công!`);
+    } catch (error) {
+      console.error("Lỗi khi thêm vào giỏ hàng:", error);
+      alert("Thêm vào giỏ hàng thất bại!");
+    }
+  };
+
+
   return (
-    <div className="card_Food">
+    <div className="card_Food" onClick={handleGoToDetail}>
       <img className="img_Food" src={image} alt={name} />
 
       <div className="title_price_Food">
@@ -24,7 +63,7 @@ function Card_Food({ id, name, price, description, image, rating }) {
           <span className="poin_rating">{rating.toFixed(1)}</span>
         </div>
 
-        <button className="button_Food">
+        <button className="button_Food" onClick={handleAddToCart}>
           <span> + </span> Add to Cart
         </button>
       </div>

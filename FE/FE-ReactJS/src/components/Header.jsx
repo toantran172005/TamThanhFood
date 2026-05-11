@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../../public/fontawesome-free-7.2.0-web/css/all.min.css";
 import "../css/Header.css";
 
-function Header() {
+function Header({ onSearch }) {
   return (
     <div className="header">
       <div className="logo">
@@ -12,7 +12,11 @@ function Header() {
 
       <div className="search">
         <div className="search-wrapper">
-          <input type="text" placeholder="Tìm kiếm..." />
+          <input 
+            type="text" 
+            placeholder="Tìm kiếm..." 
+            onChange={(e) => onSearch(e.target.value)} 
+          />
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
       </div>

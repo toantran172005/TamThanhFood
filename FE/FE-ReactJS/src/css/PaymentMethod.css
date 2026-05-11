@@ -1,0 +1,92 @@
+.payment-methods-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.methods-list-box {
+  border: 1px solid #9ca3af;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.method-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.method-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Dummy icon styling for demo */
+.method-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+  color: white;
+}
+.method-icon.momo { background: #a50064; }
+.method-icon.shopee { background: #ee4d2d; }
+.method-icon.qrcode { background: #111; }
+.method-icon.visa { background: #1a1f71; }
+
+.method-name {
+  font-size: 15px;
+  color: #111;
+}
+
+.divider-solid {
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Custom Radio Button */
+.radio-hidden {
+  display: none;
+}
+
+.radio-circle {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid #9ca3af;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.radio-circle.checked {
+  background-color: #10b981; /* Xanh lá */
+  border-color: #10b981;
+}
+
+.btn-submit-checkout {
+  margin-top: auto; /* Đẩy nút xuống dưới cùng nếu cột trái dài hơn */
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 18px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 24px;
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+  transition: transform 0.1s;
+}
+
+.btn-submit-checkout:active {
+  transform: scale(0.98);
+}

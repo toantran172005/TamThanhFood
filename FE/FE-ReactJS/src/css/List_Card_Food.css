@@ -13,6 +13,12 @@
     font-size: 24px;
 }
 
+.sort_filter .title_left p{
+    font-weight: bold;
+    font-size: 24px;
+    margin: 5px 0;
+}
+
 .sort_filter .filter_right{
     position: absolute;
     right: 3%;

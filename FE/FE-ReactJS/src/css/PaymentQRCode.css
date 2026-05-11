@@ -1,0 +1,171 @@
+/* ================= VARIABLES ================= */
+:root {
+  --color-primary-orange: #f97316;
+  --color-primary-orange-hover: #ea580c;
+  --color-border-blue: #0ea5e9;
+  --color-text-main: #111827;
+  --color-bg-white: #ffffff;
+}
+
+/* ================= LAYOUT ================= */
+.payment-qr-page {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-bg-white);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.payment-qr-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= HEADER ================= */
+.payment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 32px 0;
+  position: relative;
+}
+
+.payment-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1e3a8a; /* Màu xanh đen đậm theo design */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  flex: 1;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.payment-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0;
+  text-align: center;
+  flex: 2;
+}
+
+.header-spacer {
+  flex: 1;
+}
+
+/* ================= CONTENT & TEXT ================= */
+.payment-qr-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.instruction-text {
+  font-size: 16px;
+  color: var(--color-text-main);
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+/* ================= QR CODE DISPLAY ================= */
+.qr-display-wrapper {
+  margin-bottom: 32px;
+}
+
+/* Kỹ thuật 2 viền: Khung cam bọc ngoài, khung xanh bọc trong */
+.qr-border-orange {
+  border: 2px solid var(--color-primary-orange);
+  padding: 2px; /* Khoảng cách để viền xanh lọt vào trong */
+  display: inline-block;
+  background-color: var(--color-bg-white);
+}
+
+.qr-border-blue {
+  border: 2px solid var(--color-border-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-image {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ================= ACTION SECTION ================= */
+.payment-action-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.confirm-instruction {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.btn-confirm-payment {
+  background-color: var(--color-primary-orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-confirm-payment:hover:not(:disabled) {
+  background-color: var(--color-primary-orange-hover);
+}
+
+.btn-confirm-payment:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-confirm-payment.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet (>= 768px) */
+@media screen and (min-width: 768px) {
+  .qr-image {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .payment-title {
+    font-size: 24px;
+  }
+}
+
+/* Desktop (>= 1024px) */
+@media screen and (min-width: 1024px) {
+  .payment-qr-page {
+    padding: 32px;
+  }
+}
