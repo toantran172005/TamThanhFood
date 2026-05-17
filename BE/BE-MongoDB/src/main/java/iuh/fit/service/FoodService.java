@@ -5,6 +5,7 @@ import iuh.fit.entity.DTO.FoodDTO;
 import iuh.fit.entity.Food;
 import iuh.fit.repository.FoodRepository;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -53,4 +54,17 @@ public class FoodService {
         return foodRepository.getAllCategories();
     }
 
+    public FoodDTO getFoodById(String id) {
+
+        if (!ObjectId.isValid(id)) {
+            throw new RuntimeException("ID món ăn không hợp lệ: " + id);
+        }
+
+        ObjectId objectId = new ObjectId(id);
+
+        Food food = foodRepository.findById(objectId)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy món ăn với id: " + id));
+
+        return convertData.convertFoodToFoodDTO(food);
+    }
 }

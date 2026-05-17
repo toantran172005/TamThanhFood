@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,6 +43,10 @@ public class FoodController {
         return new ResponseEntity<>(foodService.getAllCategories(), HttpStatus.OK);
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<FoodDTO> getFoodById(@PathVariable String id) {
+        FoodDTO foodDTO = foodService.getFoodById(id);
+        return new ResponseEntity<>(foodDTO, HttpStatus.OK);
+    }
 
 }

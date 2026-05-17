@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import '../css/UserInfoCard.css';
+import userApi from '../api/userApi'; 
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userState } from '../recoil/userState';
+
 
 const UserInfoCard = ({ user, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const userId = useRecoilValue(userState)?.userId; // Lấy userId từ Recoil
   
   const [formData, setFormData] = useState({
     email: user?.email || '',
     phone: user?.phone || '',
-    address: user?.address || ''
+    address: user?.address?.[0] || ''
   });
 
   useEffect(() => {
     setFormData({
       email: user?.email || '',
       phone: user?.phone || '',
-      address: user?.address || ''
+      address: user?.address?.[0] || ''
     });
   }, [user]);
 
@@ -23,14 +28,31 @@ const UserInfoCard = ({ user, onUpdate }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleAction = (e) => {
+  const handleAction = async(e) => {
     e.preventDefault();
     if (isEditing) {
-      // Nếu đang ở chế độ Edit -> Bấm vào sẽ là Save
-      onUpdate({ ...user, ...formData });
-      setIsEditing(false); // Khóa form lại sau khi save
+
+      try {
+
+        const updateUserData = {
+          userId: user.userId,
+          name: user.name,
+          email: formData.email,
+          phone: formData.phone,
+          image: user.avatar,
+          address: formData.address ? [formData.address] : []
+        };            chat
+        const updateUserReponse = await userApi.updateUser(updateUserData);
+        console.log("DATA GUI DI:", JSON.stringify(updateUserData, null, 2));
+
+        onUpdate(updateUserReponse);
+        setIsEditing(false);
+
+      } catch (error) {
+        console.error("Error updating user info:", error);
+        alert("Có lỗi xảy ra khi cập nhật thông tin. Vui lòng thử lại.");
+      }
     } else {
-      // Nếu đang khóa -> Bấm vào để mở khóa form
       setIsEditing(true);
     }
   };
@@ -38,8 +60,8 @@ const UserInfoCard = ({ user, onUpdate }) => {
   const handleLogout = (e) => {
     e.preventDefault();
 
-    localStorage.removeItem('isLogin'); // Xóa token đăng nhập
-    window.location.href = '/Auth'; // Chuyển hướng về trang login
+    localStorage.removeItem('isLogin'); 
+    window.location.href = '/Auth'; 
   };
 
   return (

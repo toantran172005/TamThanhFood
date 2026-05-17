@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import OrderSummaryList from '../components/OrderSummaryList';
 import PaymentDetails from '../components/PaymentDetail';
 import PaymentMethods from '../components/PaymentMethod';
@@ -7,85 +7,167 @@ import '../css/CheckOut.css';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // ================= STATE =================
+  const selectedItemsFromCart = location.state?.selectedItems || [];
+
   const [orderItems, setOrderItems] = useState([]);
   const [orderSummary, setOrderSummary] = useState({
     subtotal: 0,
     shippingFee: 15000,
-    discount: 50000,
+    discount: 0,
     total: 0
   });
+
   const [selectedPayment, setSelectedPayment] = useState('qrcode');
   const [voucher, setVoucher] = useState('');
   const [note, setNote] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  // ================= EFFECTS =================
+  const formatCartItemsForCheckout = (items) => {
+    return items.map((item) => ({
+      id: item.foodId,
+      foodId: item.foodId,
+      name: item.foodName || item.name,
+      foodName: item.foodName || item.name,
+      size: item.size || 'M',
+      quantity: Number(item.quantity || 1),
+      price: Number(item.price || 0),
+      image: item.image
+    }));
+  };
+
   useEffect(() => {
-    // TODO: fetch order details from Spring Boot API (Cart or Checkout Session)
-    // axios.get('/api/v1/checkout/session').then(...)
-    
-    // Mock Data
-    setTimeout(() => {
-      const mockItems = [
-        { id: 1, name: 'Bison Burger', size: 'Median', quantity: 1, price: 105000, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80' },
-        { id: 2, name: 'Grill Chicken', size: 'Median', quantity: 1, price: 95000, image: 'https://images.unsplash.com/photo-1598515022228-51bb68ceb20c?auto=format&fit=crop&w=200&q=80' },
-        { id: 3, name: 'Pan-Fried Tofu', size: 'Median', quantity: 1, price: 50000, image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=200&q=80' }
-      ];
-      setOrderItems(mockItems);
-      
-      const sub = mockItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-      setOrderSummary(prev => ({
-        ...prev,
-        subtotal: sub,
-        total: sub + prev.shippingFee - prev.discount
-      }));
-      setIsLoading(false);
-    }, 300);
+    setIsLoading(true);
+
+    const formattedItems = formatCartItemsForCheckout(selectedItemsFromCart);
+
+    const subtotal = formattedItems.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+
+    const shippingFee = formattedItems.length > 0 ? 15000 : 0;
+    const discount = 0;
+    const total = subtotal + shippingFee - discount;
+
+    setOrderItems(formattedItems);
+
+    setOrderSummary({
+      subtotal,
+      shippingFee,
+      discount,
+      total
+    });
+
+    setIsLoading(false);
   }, []);
 
-  // ================= HANDLERS =================
   const handleApplyVoucher = (e) => {
     e.preventDefault();
-    // TODO: Call API to validate voucher
-    console.log('Apply voucher:', voucher);
+
+    if (voucher.trim().toUpperCase() === 'GIAM50') {
+      const discount = 50000;
+
+      setOrderSummary((prev) => ({
+        ...prev,
+        discount,
+        total: prev.subtotal + prev.shippingFee - discount
+      }));
+
+      alert('Áp dụng voucher thành công!');
+    } else {
+      alert('Voucher không hợp lệ!');
+    }
   };
 
   const handleCheckout = () => {
-    // TODO: POST request to Spring Boot API to create Order
+    if (orderItems.length === 0) {
+      alert('Bạn chưa chọn món nào để thanh toán!');
+      navigate('/cart_detail');
+      return;
+    }
+
     const payload = {
       items: orderItems,
       paymentMethod: selectedPayment,
       voucherCode: voucher,
       note: note,
+      subtotal: orderSummary.subtotal,
+      shippingFee: orderSummary.shippingFee,
+      discount: orderSummary.discount,
       totalAmount: orderSummary.total
     };
+
     console.log('Submit Checkout:', payload);
+
+    if (selectedPayment === 'qrcode') {
+      navigate('/payment-qr', {
+        state: {
+          orderId: 'TEMP_ORDER_ID',
+          amount: orderSummary.total,
+          items: orderItems,
+          paymentMethod: selectedPayment,
+          note: note,
+          voucherCode: voucher
+        }
+      });
+      return;
+    }
+
     alert('Đặt hàng thành công!');
   };
 
-  if (isLoading) return <div className="checkout-loading">Loading order details...</div>;
+  if (isLoading) {
+    return <div className="checkout-loading">Loading order details...</div>;
+  }
+
+  if (orderItems.length === 0) {
+    return (
+      <div className="checkout-page-container">
+        <div className="checkout-header">
+          <button className="back-btn" onClick={() => navigate('/cart_detail')}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+
+            <span className="back-text">Back</span>
+          </button>
+
+          <h1 className="checkout-title">Confirm your order</h1>
+
+          <div className="spacer"></div>
+        </div>
+
+        <div style={{ padding: '30px', textAlign: 'center', fontSize: '18px', fontWeight: '600' }}>
+          Bạn chưa chọn món nào để thanh toán.
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="checkout-page-container">
-      {/* Header Area */}
       <div className="checkout-header">
         <button className="back-btn" onClick={() => navigate(-1)}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+
           <span className="back-text">Back</span>
         </button>
+
         <h1 className="checkout-title">Confirm your order</h1>
-        <div className="spacer"></div> {/* Để cân bằng flexbox */}
+
+        <div className="spacer"></div>
       </div>
 
-      {/* Top Section: Order Items */}
       <OrderSummaryList items={orderItems} />
 
-      {/* Bottom Section: Details & Payment Methods */}
       <div className="checkout-bottom-grid">
         <div className="left-column">
-          <PaymentDetails 
+          <PaymentDetails
             summary={orderSummary}
             itemCount={orderItems.length}
             voucher={voucher}
@@ -95,9 +177,9 @@ const CheckoutPage = () => {
             setNote={setNote}
           />
         </div>
-        
+
         <div className="right-column">
-          <PaymentMethods 
+          <PaymentMethods
             selected={selectedPayment}
             onChange={setSelectedPayment}
             onSubmit={handleCheckout}

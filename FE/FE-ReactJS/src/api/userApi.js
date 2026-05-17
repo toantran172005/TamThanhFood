@@ -9,6 +9,10 @@ const userApi = {
     getUserDetails(userId) {
         const url = `/user/details/${userId}`;
         return axiosClient.get(url);
+    },
+    updateUser(data){
+        const url = '/user/update';
+        return axiosClient.post(url, data);
     }
 };
 
