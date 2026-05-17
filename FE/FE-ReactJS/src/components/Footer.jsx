@@ -8,7 +8,7 @@ function Footer() {
       <div className="footer-top">
         <div className="footer-column footer-logo">
           <h3>3T-Food Info</h3>
-          <p>Easy and delicious meals, delivered from home to home.</p>
+          <p>Các món ăn dễ chế biến và ngon miệng, giao tận nhà..</p>
           <div className="footer-socials">
             <a href="#">
               <i className="fa-brands fa-facebook"></i>
