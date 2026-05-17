@@ -41,7 +41,7 @@ const AddressListCard = ({ addresses, onAdd, onEdit }) => {
 
       <div className="form-actions mt-auto">
         <button className="btn-primary pill-btn" onClick={onAdd}>
-          + Add
+          + Thêm
         </button>
       </div>
     </div>

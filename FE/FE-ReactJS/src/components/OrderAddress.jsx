@@ -6,7 +6,7 @@ const OrderAddress = ({ to, from }) => {
       <div className="address-block to-block">
         <div className="address-header">
           <span className="dot dot-red"></span>
-          <h3>To</h3>
+          <h3>Tới</h3>
         </div>
         <div className="address-content">
           <p className="address-name">{to.name}</p>
@@ -20,7 +20,7 @@ const OrderAddress = ({ to, from }) => {
       <div className="address-block from-block">
         <div className="address-header">
           <span className="dot dot-green"></span>
-          <h3>From</h3>
+          <h3>Từ</h3>
         </div>
         <div className="address-content">
           <p className="address-name">{from.name}</p>

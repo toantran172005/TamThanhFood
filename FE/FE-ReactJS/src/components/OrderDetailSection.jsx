@@ -1,6 +1,8 @@
 import React from 'react';
 
 const OrderDetailSection = ({ items = [], summary = {} }) => {
+  const SHIPPING_FEE = 15000;
+
   const formatVND = (price) => {
     return new Intl.NumberFormat('vi-VN').format(Number(price || 0)) + ' VNĐ';
   };
@@ -14,6 +16,10 @@ const OrderDetailSection = ({ items = [], summary = {} }) => {
 
     return `/${image}`;
   };
+
+  const shippingFee = SHIPPING_FEE;
+  const discount = Number(summary.discount || 0);
+  const total = Number(summary.total || 0);
 
   return (
     <div className="order-card detail-section-card">
@@ -57,19 +63,19 @@ const OrderDetailSection = ({ items = [], summary = {} }) => {
 
       <div className="summary-list">
         <div className="summary-row">
-          <span>Shipping fee</span>
-          <span>{formatVND(summary.shippingFee)}</span>
+          <span>Phí vận chuyển</span>
+          <span>{formatVND(shippingFee)}</span>
         </div>
 
         <div className="summary-row">
-          <span>Discount</span>
-          <span>{formatVND(summary.discount)}</span>
+          <span>Giảm giá</span>
+          <span>{formatVND(discount)}</span>
         </div>
 
         <div className="summary-row summary-total">
-          <span>Total</span>
+          <span>Tổng cộng</span>
           <span className="total-price">
-            {formatVND(summary.total)}
+            {formatVND(total)}
           </span>
         </div>
       </div>

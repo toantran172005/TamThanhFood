@@ -7,13 +7,13 @@ const OrderActions = () => {
         className="btn-action btn-review"
         onClick={() => { /* TODO: handle review */ }}
       >
-        Review
+        Đánh giá
       </button>
       <button 
         className="btn-action btn-reorder"
         onClick={() => { /* TODO: handle reorder */ }}
       >
-        Re - Order
+        Đặt lại
       </button>
     </div>
   );

@@ -99,7 +99,7 @@ const UserProfilePage = () => {
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
         </Link>
-        <h1 className="profile-title">YOUR INFORMATION</h1>
+        <h1 className="profile-title">THÔNG TIN CỦA BẠN</h1>
       </div>
 
       {/* MAIN CONTENT GRID */}
