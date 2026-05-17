@@ -39,7 +39,7 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
         image: image,
         quantity: 1,
         price: price,
-        size: "M",
+        size: "Vừa",
         note: ""
       };
 
@@ -86,7 +86,7 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
         </div>
 
         <button className="button_Food" onClick={handleAddToCart}>
-          <span> + </span> Add to Cart
+          <span> + </span> Thêm giỏ hàng
         </button>
       </div>
     </div>

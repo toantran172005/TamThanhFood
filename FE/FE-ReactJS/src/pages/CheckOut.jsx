@@ -162,10 +162,10 @@ const CheckoutPage = () => {
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
 
-            <span className="back-text">Back</span>
+            <span className="back-text">Quay lại</span>
           </button>
 
-          <h1 className="checkout-title">Confirm your order</h1>
+          <h1 className="checkout-title">Xác nhận đơn hàng</h1>
 
           <div className="spacer"></div>
         </div>
@@ -186,10 +186,10 @@ const CheckoutPage = () => {
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
 
-          <span className="back-text">Back</span>
+          <span className="back-text">Quay lại</span>
         </button>
 
-        <h1 className="checkout-title">Confirm your order</h1>
+        <h1 className="checkout-title">Xác nhận đơn hàng</h1>
 
         <div className="spacer"></div>
       </div>
