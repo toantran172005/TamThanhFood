@@ -1,6 +1,7 @@
 package iuh.fit.controller;
 
 import iuh.fit.entity.DTO.LoginRequest;
+import iuh.fit.entity.DTO.RegisterRequest;
 import iuh.fit.entity.DTO.UserDTO;
 import iuh.fit.entity.User;
 import iuh.fit.service.UserService;
@@ -38,4 +39,13 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> registerUser(@RequestBody RegisterRequest request) {
+        try {
+            UserDTO newUser = userService.registerUser(request);
+            return new ResponseEntity<>(newUser, HttpStatus.CREATED); 
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
 }
