@@ -26,24 +26,6 @@ function Footer() {
         </div>
 
         <div className="footer-column">
-          <h4>Categories</h4>
-          <ul>
-            <li>
-              <a href="#">Cơm</a>
-            </li>
-            <li>
-              <a href="#">Bánh mì</a>
-            </li>
-            <li>
-              <a href="#">Nước</a>
-            </li>
-            <li>
-              <a href="#">Đồ ăn vặt</a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="footer-column">
           <h4>Company</h4>
           <ul>
             <li>

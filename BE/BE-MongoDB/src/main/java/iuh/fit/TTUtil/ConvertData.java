@@ -26,6 +26,7 @@ public class ConvertData {
         voucherDTO.setMaxOrder(voucher.getMaxOrder());
         voucherDTO.setExpiredAt(voucher.getExpiredAt());
         voucherDTO.setIsActive(voucher.getIsActive());
+        voucherDTO.setImage(voucher.getImage());
 
         return voucherDTO;
     }

@@ -41,6 +41,13 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
   };
 
 
+  const formatPrice = (amount) => {
+    const numericAmount = Number(amount); 
+    if (isNaN(numericAmount)) return "0đ";
+    
+    return new Intl.NumberFormat('vi-VN').format(numericAmount) + "đ";
+  };
+
   return (
     <div className="card_Food" onClick={handleGoToDetail}>
       <img className="img_Food" src={image} alt={name} />
@@ -48,7 +55,7 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
       <div className="title_price_Food">
           <h2 className="title_Food">{name}</h2>
 
-          <span className="price_Food">${price.toFixed(2)}</span>
+          <span className="price_Food">{formatPrice(price)}</span>
       </div>
 
       <p className="description_Food">

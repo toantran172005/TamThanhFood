@@ -10,6 +10,7 @@ public class OrderItem {
     String foodId;
 
     String foodName;
+    String image;
     int quantity;
     Double price;
     String size;
