@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: ./BE/BE-MongoDB
+      dockerfile: Dockerfile
+    container_name: tamthanhfood_backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb+srv://sa:sapassword@tonicluster.clcg9ff.mongodb.net/TamThanhFood?retryWrites=true&w=majority
+
+  frontend:
+    build:
+      context: ./FE/FE-ReactJS
+      dockerfile: Dockerfile
+    container_name: tamthanhfood_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

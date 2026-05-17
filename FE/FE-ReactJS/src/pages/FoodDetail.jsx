@@ -90,7 +90,7 @@ const FoodDetailPage = () => {
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
 
-        <span className="back-text">Back</span>
+        <span className="back-text">Quay lại</span>
       </button>
 
       <div className="detail-main-grid">

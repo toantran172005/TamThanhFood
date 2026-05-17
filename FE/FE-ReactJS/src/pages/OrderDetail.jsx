@@ -143,7 +143,7 @@ const OrderDetailPage = () => {
               d="M10 19l-7-7m0 0l7-7m-7 7h18"
             />
           </svg>
-          Back
+          Quay lại
         </Link>
 
         <h1 className="page-title">Order Detail</h1>

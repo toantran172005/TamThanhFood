@@ -12,7 +12,7 @@ const FoodReviews = ({ reviews }) => {
 
   return (
     <div className="food-reviews-section">
-      <h2 className="reviews-title">Reviews</h2>
+      <h2 className="reviews-title">Đánh giá</h2>
       
       <div className="reviews-scroll-container">
         {reviews.map((review) => (

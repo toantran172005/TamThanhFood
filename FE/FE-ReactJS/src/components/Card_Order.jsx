@@ -37,7 +37,7 @@ function Card_Order({ orderData }) {
       <div className="cart_order_left">
         <div className="cart_order_info">
           <p>
-            Order:{" "}
+            Mã đơn hàng:{" "}
             <span className="order_id">
               #{orderId}
             </span>
@@ -80,11 +80,11 @@ function Card_Order({ orderData }) {
 
         <div className="cart_order_actions">
           <button className="detail" onClick={handleToDetail}>
-            Detail
+            Chi tiết
           </button>
 
           <button className="re_order">
-            Re-Order
+            Đặt lại
           </button>
         </div>
       </div>

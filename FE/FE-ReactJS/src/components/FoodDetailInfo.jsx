@@ -60,7 +60,7 @@ const FoodDetailInfo = ({ food }) => {
     }
   };
 
-  const handleBuyNow = async () => {
+  const handleBuyNow = () => {
     const userId = localStorage.getItem("userId");
 
     if (!userId) {
@@ -69,27 +69,25 @@ const FoodDetailInfo = ({ food }) => {
       return;
     }
 
-    try {
-      const payload = {
-        userId: userId,
-        foodId: foodId,
-        foodName: foodName,
-        image: foodImage,
-        quantity: quantity,
-        price: selectedPrice,
-        size: selectedSize,
-        note: ""
-      };
+    const buyNowItem = {
+      userId: userId,
+      foodId: foodId,
+      foodName: foodName,
+      name: foodName,
+      image: foodImage,
+      quantity: quantity,
+      price: selectedPrice,
+      size: selectedSize,
+      note: ""
+    };
 
-      console.log("Buy now payload:", payload);
+    console.log("Buy now item:", buyNowItem);
 
-      await cartApi.addToCart(payload);
-
-      navigate("/cart_detail");
-    } catch (error) {
-      console.error("Lỗi khi mua ngay:", error);
-      alert("Mua ngay thất bại!");
-    }
+    navigate("/checkout", {
+      state: {
+        selectedItems: [buyNowItem]
+      }
+    });
   };
 
   const renderStars = (rating) => {
@@ -149,7 +147,7 @@ const FoodDetailInfo = ({ food }) => {
 
       <div className="actions-section">
         <div className="size-selector-wrapper">
-          <label className="size-label">Select Size</label>
+          <label className="size-label">Chọn size</label>
 
           <div className="custom-select-wrapper">
             <select
@@ -183,14 +181,14 @@ const FoodDetailInfo = ({ food }) => {
             className="btn-primary btn-add-cart"
             onClick={handleAddToCart}
           >
-            + Add to Cart
+            + Thêm giỏ hàng 
           </button>
 
           <button
             className="btn-primary btn-buy-now"
             onClick={handleBuyNow}
           >
-            Buy now
+            Mua ngay
           </button>
         </div>
       </div>
