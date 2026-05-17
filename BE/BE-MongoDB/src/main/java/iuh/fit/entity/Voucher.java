@@ -26,4 +26,5 @@ public class Voucher {
     Double maxDiscount;
     LocalDate expiredAt;
     Boolean isActive;
+    String image;
 }

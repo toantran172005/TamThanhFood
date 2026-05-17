@@ -13,8 +13,9 @@ function Cart_Product({ item, onIncrease, onDecrease, onRemove }) {
             </div>
 
             <div className='cart_product_description'>
-                <h2>{item.name}</h2>
-                <p>{item.foodName || "Món ăn ngon mỗi ngày"}</p>
+                <h2>{item.foodName}</h2>
+                {/* Chỉ hiển thị text của Size đã chọn, không dùng select nữa */}
+                <p>Size đã chọn: <strong>{item.size || "Mặc định"}</strong></p>
                 <span>{new Intl.NumberFormat('vi-VN').format(item.price)}đ</span>
             </div>
 
@@ -24,14 +25,6 @@ function Cart_Product({ item, onIncrease, onDecrease, onRemove }) {
                     <button onClick={onDecrease} disabled={item.quantity <= 1}>-</button>
                     <input type="text" value={item.quantity} readOnly />
                     <button onClick={onIncrease}>+</button>
-                </div>
-                <div className='size'>
-                    <span>Size:</span>
-                    <select name="size" value={item.size || "M"} disabled>
-                        <option value="S">Small</option>
-                        <option value="M">Medium</option>
-                        <option value="L">Large</option>
-                    </select>
                 </div>
             </div>
 

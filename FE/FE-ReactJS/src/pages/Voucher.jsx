@@ -36,7 +36,7 @@ function Voucher() {
         : `Giảm trực tiếp ${item.value.toLocaleString()}đ`,
     time: "Hạn dùng:",
     date: item.expiredAt,
-    image: item.code === "FREESHIP" ? "/freeship.png" : "/discount.png",
+    image: item.image || (item.code === "FREESHIP" ? "/freeship.png" : "/discount.png"),
     action: item.isActive ? "Dùng ngay" : "Hết hạn",
   });
 
