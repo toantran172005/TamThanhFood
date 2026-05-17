@@ -17,4 +17,5 @@ public class VoucherDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     LocalDate expiredAt;
     Boolean isActive;
+    String image;
 }
