@@ -71,6 +71,7 @@ public class CartService {
             OrderItem newItem = new OrderItem();
             newItem.setFoodId(dto.getFoodId());
             newItem.setFoodName(dto.getFoodName());
+            newItem.setImage(dto.getImage());
             newItem.setQuantity(dto.getQuantity());
             newItem.setPrice(dto.getPrice());
             newItem.setSize(dto.getSize());

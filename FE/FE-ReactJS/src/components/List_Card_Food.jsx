@@ -85,9 +85,9 @@ function List_Card_Food() {
               <option value="popular">Phổ biến nhất</option>
               <option value="new">Mới nhất</option>
             </select>
-            <a href="#/">
+            {/* <a href="#/">
               <i className="fa-solid fa-sliders"></i>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

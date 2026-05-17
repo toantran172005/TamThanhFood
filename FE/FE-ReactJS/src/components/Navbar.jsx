@@ -16,15 +16,15 @@ function Navbar() {
         <li>
           <Link to="/orders_history"><i className="fa-solid fa-file-lines"></i></Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/categorys"><i className="fa-solid fa-list"></i></Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/vouchers"><i className="fa-solid fa-ticket"></i></Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/notifications"><i className="fa-solid fa-bell"></i></Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/settings"><i className="fa-solid fa-gear"></i></Link>
         </li>

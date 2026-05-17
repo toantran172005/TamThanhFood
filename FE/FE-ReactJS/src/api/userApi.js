@@ -13,7 +13,11 @@ const userApi = {
     updateUser(data){
         const url = '/user/update';
         return axiosClient.post(url, data);
-    }
+    },
+    register: (data) => {
+    const url = '/user/register'; 
+    return axiosClient.post(url, data);
+  }
 };
 
 export default userApi;
