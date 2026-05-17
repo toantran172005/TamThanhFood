@@ -43,7 +43,7 @@ function App() {
             <Route path="information_user" element={<UserProfilePage />} />
             <Route path="foods/:id" element={<FoodDetailPage />} />
             <Route path="checkout" element={<CheckoutPage />} />
-            <Route path="orderdetail" element={<OrderDetail/>}/>
+            <Route path="orderdetail/:orderId" element={<OrderDetail />} />
             <Route path="waitfororder/:orderId" element={<WaitForOrder />} />
             <Route path="payment-qr" element={<PaymentQRCodePage />} />
 

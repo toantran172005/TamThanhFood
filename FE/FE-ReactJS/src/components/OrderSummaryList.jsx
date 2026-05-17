@@ -13,7 +13,7 @@ const OrderSummaryList = ({ items }) => {
       return image;
     }
 
-    return `/images/${image}`;
+    return `/${image}`;
   };
 
   return (

@@ -7,8 +7,29 @@ function Card_Order({ orderData }) {
 
   if (!orderData) return null;
 
+  const orderId = orderData.id || orderData.orderId;
+
+  const getImageUrl = (image) => {
+    if (!image) return "/Bison_Burger.png";
+
+    if (image.startsWith("http")) {
+      return image;
+    }
+
+    return `/${image}`;
+  };
+
   const handleToDetail = () => {
-    navigate(`/orderdetail/${orderData.id || orderData.orderId}`);
+    if (!orderId) {
+      alert("Không tìm thấy mã đơn hàng!");
+      return;
+    }
+
+    navigate(`/orderdetail/${orderId}`);
+  };
+
+  const formatVND = (price) => {
+    return new Intl.NumberFormat("vi-VN").format(Number(price || 0)) + " VNĐ";
   };
 
   return (
@@ -18,24 +39,30 @@ function Card_Order({ orderData }) {
           <p>
             Order:{" "}
             <span className="order_id">
-              #{orderData.id || orderData.orderId}
+              #{orderId}
             </span>
+
             <span className="order_date">
               {" "}
-              {orderData.createdAt || orderData.date}
+              {orderData.createdAt || orderData.date || ""}
             </span>
           </p>
         </div>
 
         <div className="cart_order_image">
-          {orderData.items &&
-            orderData.items
-              .slice(0, 2)
-              .map((item, index) => (
-                <img key={index} src={item.image} alt={item.name} />
-              ))}
-          {!orderData.items && (
-            <img src={orderData.image || "/Bison_Burger.png"} alt="img_food" />
+          {orderData.items && orderData.items.length > 0 ? (
+            orderData.items.slice(0, 2).map((item, index) => (
+              <img
+                key={index}
+                src={getImageUrl(item.image)}
+                alt={item.foodName || item.name || "food"}
+              />
+            ))
+          ) : (
+            <img
+              src={getImageUrl(orderData.image)}
+              alt="img_food"
+            />
           )}
         </div>
       </div>
@@ -45,11 +72,9 @@ function Card_Order({ orderData }) {
           <p className={`status ${orderData.status?.toLowerCase()}`}>
             {orderData.status || "Processing"}
           </p>
+
           <h4>
-            {new Intl.NumberFormat("vi-VN").format(
-              orderData.totalPrice || orderData.price,
-            )}{" "}
-            VNĐ
+            {formatVND(orderData.totalPrice || orderData.total || orderData.price)}
           </h4>
         </div>
 
@@ -57,7 +82,10 @@ function Card_Order({ orderData }) {
           <button className="detail" onClick={handleToDetail}>
             Detail
           </button>
-          <button className="re_order">Re-Order</button>
+
+          <button className="re_order">
+            Re-Order
+          </button>
         </div>
       </div>
     </div>

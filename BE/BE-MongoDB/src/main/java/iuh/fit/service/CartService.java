@@ -16,6 +16,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CartService {
+
     final CartRepository cartRepository;
     final ConvertData convertData;
 
@@ -40,7 +41,7 @@ public class CartService {
     public CartDTO getCartByUserId(ObjectId userId) {
         Optional<Cart> cartOp = cartRepository.findByUserId(userId);
 
-        if(cartOp.isPresent()) {
+        if (cartOp.isPresent()) {
             Cart cart = cartOp.get();
             return convertData.convertCartToCartDTO(cart);
         } else {
@@ -66,11 +67,25 @@ public class CartService {
 
         if (existingItem.isPresent()) {
             OrderItem item = existingItem.get();
+
             item.setQuantity(item.getQuantity() + dto.getQuantity());
+
+            if (item.getImage() == null || item.getImage().isBlank()) {
+                item.setImage(dto.getImage());
+            }
+
+            if (item.getFoodName() == null || item.getFoodName().isBlank()) {
+                item.setFoodName(dto.getFoodName());
+            }
+
+            item.setPrice(dto.getPrice());
+            item.setNote(dto.getNote());
         } else {
             OrderItem newItem = new OrderItem();
+
             newItem.setFoodId(dto.getFoodId());
             newItem.setFoodName(dto.getFoodName());
+            newItem.setImage(dto.getImage());
             newItem.setQuantity(dto.getQuantity());
             newItem.setPrice(dto.getPrice());
             newItem.setSize(dto.getSize());
@@ -96,13 +111,26 @@ public class CartService {
                 .findFirst();
 
         if (existingItem.isPresent()) {
-            existingItem.get().setQuantity(dto.getQuantity());
+            OrderItem item = existingItem.get();
+
+            item.setQuantity(dto.getQuantity());
+
+            if (item.getImage() == null || item.getImage().isBlank()) {
+                item.setImage(dto.getImage());
+            }
+
+            if (item.getFoodName() == null || item.getFoodName().isBlank()) {
+                item.setFoodName(dto.getFoodName());
+            }
+
+            item.setPrice(dto.getPrice());
+            item.setNote(dto.getNote());
         } else {
             throw new RuntimeException("Sản phẩm không tồn tại trong giỏ hàng!");
         }
 
         Cart savedCart = cartRepository.save(cart);
+
         return convertData.convertCartToCartDTO(savedCart);
     }
-
 }
