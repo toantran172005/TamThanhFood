@@ -35,6 +35,12 @@
     text-align: center;
 }
 
+.order_history .order_history_header .title p{
+    font-weight: bold;
+    font-size: 24px;
+    margin: 5px 0;
+}
+
 .order_history .order_history_content{
     width: 90%;
 }

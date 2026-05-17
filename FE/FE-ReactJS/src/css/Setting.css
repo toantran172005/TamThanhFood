@@ -39,6 +39,12 @@
     text-align: center;
 }
 
+.setting .setting_header .title p{
+    font-weight: bold;
+    font-size: 24px;
+    margin: 5px 0;
+}
+
 .setting .setting_body{
     margin-top: 20px;
 }

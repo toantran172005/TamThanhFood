@@ -39,6 +39,12 @@
     text-align: center;
 }
 
+.notification .notification_header .title p{
+    font-weight: bold;
+    font-size: 24px;
+    margin: 5px 0;
+}
+
 .notification .list_notification{
     width: 100%;
 }
