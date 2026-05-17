@@ -84,10 +84,16 @@ const Cart_Detail = () => {
 
   const handleGoToCheckout = () => {
     if (selectedIds.length === 0) return alert("Vui lòng chọn món!");
+
     const itemsToCheckout = cartItems.filter((item) =>
       selectedIds.includes(item.foodId)
     );
-    navigate("/checkout", { state: { checkoutItems: itemsToCheckout } });
+
+    navigate("/checkout", { 
+      state: { 
+        selectedItems: itemsToCheckout 
+      } 
+    });
   };
 
   if (loading) return <div className="loading">Đang tải giỏ hàng...</div>;

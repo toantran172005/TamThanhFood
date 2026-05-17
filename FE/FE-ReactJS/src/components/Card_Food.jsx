@@ -7,13 +7,14 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
   const navigate = useNavigate();
 
   const handleGoToDetail = () => {
-    navigate(`/food/${foodId}`);
+    navigate(`/foods/${foodId}`);
   };
 
   const handleAddToCart = async (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
 
     const userId = localStorage.getItem("userId");
+
     if (!userId) {
       alert("Vui lòng đăng nhập để thêm vào giỏ hàng!");
       navigate("/Auth");
@@ -28,11 +29,12 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
         image: image,
         quantity: 1,
         price: price,
-        size: "M", 
+        size: "M",
         note: ""
       };
 
       await cartApi.addToCart(payload);
+
       alert(`Đã thêm ${name} vào giỏ hàng thành công!`);
     } catch (error) {
       console.error("Lỗi khi thêm vào giỏ hàng:", error);
@@ -40,15 +42,16 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
     }
   };
 
-
   return (
     <div className="card_Food" onClick={handleGoToDetail}>
       <img className="img_Food" src={image} alt={name} />
 
       <div className="title_price_Food">
-          <h2 className="title_Food">{name}</h2>
+        <h2 className="title_Food">{name}</h2>
 
-          <span className="price_Food">${price.toFixed(2)}</span>
+        <span className="price_Food">
+          ${Number(price || 0).toFixed(2)}
+        </span>
       </div>
 
       <p className="description_Food">
@@ -60,7 +63,10 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
           <span>
             <img className="star_Food" src="/star.png" alt="Star" />
           </span>
-          <span className="poin_rating">{rating.toFixed(1)}</span>
+
+          <span className="poin_rating">
+            {Number(rating || 0).toFixed(1)}
+          </span>
         </div>
 
         <button className="button_Food" onClick={handleAddToCart}>
@@ -69,6 +75,6 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Card_Food;
