@@ -11,29 +11,21 @@ import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
+
     final OrderRepository orderRepository;
     final UserRepository userRepository;
     final ConvertData convertData;
 
-    public OrderDTO canceledOrder(ObjectId userId, ObjectId orderId) {
-
+    public OrderDTO getOrderById(ObjectId orderId) {
         Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng!"));
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng với ID: " + orderId));
 
-        if (!order.getStatus().equals("PENDING") && !order.getStatus().equals("CONFIRMED")) {
-            throw new RuntimeException("Đơn hàng đã được xử lý hoặc đang giao, không thể hủy!");
-        }
-
-        order.setStatus("CANCELED");
-
-        Order updatedOrder = orderRepository.save(order);
-        return convertData.convertOrderToOrderDTO(updatedOrder);
+        return convertData.convertOrderToOrderDTO(order);
     }
 
     public List<OrderDTO> getListOrderByUserId(ObjectId userId) {
@@ -45,16 +37,52 @@ public class OrderService {
                 .orElseThrow(() -> new RuntimeException("Người dùng không tồn tại với ID: " + userId));
 
         List<Order> listOrder = orderRepository.findOrdersByUserId(userId);
-        System.out.println(listOrder);
-        return listOrder.stream().map(convertData::convertOrderToOrderDTO).toList();
+
+        return listOrder
+                .stream()
+                .map(convertData::convertOrderToOrderDTO)
+                .toList();
     }
 
-    public List<OrderDTO> createOrder(CreateOrderDTO createOrderDTO) {
+    public OrderDTO createOrder(CreateOrderDTO createOrderDTO) {
         Order order = convertData.convertCreateOrderDTOToOrder(createOrderDTO);
-        orderRepository.save(order);
 
-        List<Order> orderList = orderRepository.findOrdersByUserId(order.getUserId());
-        return orderList.stream().map(convertData::convertOrderToOrderDTO).toList();
+        Order savedOrder = orderRepository.save(order);
+
+        return convertData.convertOrderToOrderDTO(savedOrder);
     }
 
+    public OrderDTO updateOrderStatus(ObjectId orderId, String status) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng!"));
+
+        if (status == null || status.isBlank()) {
+            throw new RuntimeException("Trạng thái đơn hàng không hợp lệ!");
+        }
+
+        order.setStatus(status);
+
+        Order updatedOrder = orderRepository.save(order);
+
+        return convertData.convertOrderToOrderDTO(updatedOrder);
+    }
+
+    public OrderDTO canceledOrder(ObjectId userId, ObjectId orderId) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng!"));
+
+        if (!order.getUserId().equals(userId)) {
+            throw new RuntimeException("Bạn không có quyền hủy đơn hàng này!");
+        }
+
+        if (!order.getStatus().equals("PENDING") && !order.getStatus().equals("CONFIRMED")) {
+            throw new RuntimeException("Đơn hàng đã được xử lý hoặc đang giao, không thể hủy!");
+        }
+
+        order.setStatus("CANCELED");
+
+        Order updatedOrder = orderRepository.save(order);
+
+        return convertData.convertOrderToOrderDTO(updatedOrder);
+    }
 }
