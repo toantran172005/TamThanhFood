@@ -6,6 +6,16 @@ import cartApi from "../api/cartApi";
 const Card_Food = ({ foodId, name, price, description, image, rating }) => {
   const navigate = useNavigate();
 
+  const getImageUrl = (image) => {
+    if (!image) return "/Bison_Burger.png";
+
+    if (image.startsWith("http")) {
+      return image;
+    }
+
+    return `/${image}`;
+  };
+
   const handleGoToDetail = () => {
     navigate(`/foods/${foodId}`);
   };
@@ -52,7 +62,7 @@ const Card_Food = ({ foodId, name, price, description, image, rating }) => {
 
   return (
     <div className="card_Food" onClick={handleGoToDetail}>
-      <img className="img_Food" src={image} alt={name} />
+      <img className="img_Food" src={getImageUrl(image)} alt={name} />
 
       <div className="title_price_Food">
         <h2 className="title_Food">{name}</h2>

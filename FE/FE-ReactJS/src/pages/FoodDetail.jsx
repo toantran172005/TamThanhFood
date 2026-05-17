@@ -48,13 +48,13 @@ const FoodDetailPage = () => {
   };
 
   const getImageUrl = (image) => {
-    if (!image) return "/images/no-image.png";
+    if (!image) return "/Bison_Burger.png";
 
     if (image.startsWith("http")) {
       return image;
     }
 
-    return `/images/${image}`;
+    return `/${image}`;
   };
 
   if (isLoading) {

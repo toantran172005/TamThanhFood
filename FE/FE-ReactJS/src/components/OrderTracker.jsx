@@ -54,7 +54,6 @@ const OrderTracker = ({ status, supportText, currentStep }) => {
       <div className="tracker-progress-container">
         <div className="tracker-steps">
           
-          {/* Đưa đường line vào TỚI ĐÂY để nó chạy theo chiều rộng của container chứa icon */}
           <div className="tracker-line-bg"></div>
           <div 
             className="tracker-line-active" 

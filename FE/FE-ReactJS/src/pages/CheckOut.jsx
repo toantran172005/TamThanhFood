@@ -9,6 +9,7 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Nhận món đã tick từ Cart_Detail
   const selectedItemsFromCart = location.state?.selectedItems || [];
 
   const [orderItems, setOrderItems] = useState([]);
@@ -33,7 +34,8 @@ const CheckoutPage = () => {
       size: item.size || 'M',
       quantity: Number(item.quantity || 1),
       price: Number(item.price || 0),
-      image: item.image
+      image: item.image,
+      description: item.description || item.note || 'Món ăn ngon mỗi ngày'
     }));
   };
 
@@ -87,25 +89,27 @@ const CheckoutPage = () => {
       return;
     }
 
-    const payload = {
+    const orderId = `OD${Date.now()}`;
+
+    const checkoutData = {
+      orderId,
       items: orderItems,
+      summary: orderSummary,
       paymentMethod: selectedPayment,
       voucherCode: voucher,
       note: note,
-      subtotal: orderSummary.subtotal,
-      shippingFee: orderSummary.shippingFee,
-      discount: orderSummary.discount,
-      totalAmount: orderSummary.total
+      amount: orderSummary.total
     };
 
-    console.log('Submit Checkout:', payload);
+    console.log('Checkout data gửi sang QR:', checkoutData);
 
     if (selectedPayment === 'qrcode') {
       navigate('/payment-qr', {
-        state: {
-          orderId: 'TEMP_ORDER_ID',
+          state: {
+          orderId,
           amount: orderSummary.total,
           items: orderItems,
+          summary: orderSummary,
           paymentMethod: selectedPayment,
           note: note,
           voucherCode: voucher
@@ -114,7 +118,34 @@ const CheckoutPage = () => {
       return;
     }
 
-    alert('Đặt hàng thành công!');
+    // Nếu thanh toán không phải QR thì đi thẳng sang waitfororder
+    navigate(`/waitfororder/${orderId}`, {
+      state: {
+        orderData: {
+          id: orderId,
+          status: 'Confirmed',
+          supportText: 'If you need further assistance, please visit our Support Center.',
+          currentStep: 1,
+          to: {
+            name: 'T3 Food',
+            address: '200 Vuon Lai, An Phu Dong Ward, HCM City',
+            phone: '0987654321'
+          },
+          from: {
+            name: 'Tom',
+            address: '10 Nguyen Van Dung Street, Hanh Thong Ward, HCM City',
+            phone: '0987612345'
+          },
+          items: orderItems,
+          summary: orderSummary,
+          info: {
+            note: note || 'Empty',
+            orderTime: new Date().toLocaleString('vi-VN'),
+            paymentMethod: selectedPayment
+          }
+        }
+      }
+    });
   };
 
   if (isLoading) {
