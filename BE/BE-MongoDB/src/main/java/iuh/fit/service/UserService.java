@@ -7,7 +7,9 @@ import iuh.fit.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
+import iuh.fit.entity.DTO.RegisterRequest;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -46,6 +48,27 @@ public class UserService {
         User updatedUser = userRepository.save(user);
 
         return convertData.convertUserToUserDTO(updatedUser);
+    }
+
+    public UserDTO registerUser(RegisterRequest request) {
+        Optional<User> existingUser = userRepository.findUserByEmail(request.getEmail());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("Email này đã được sử dụng!");
+        }
+
+
+        User newUser = new User();
+        newUser.setName(request.getName());
+        newUser.setEmail(request.getEmail());
+        newUser.setPassword(request.getPassword());
+
+        newUser.setImage("/default-avatar.png");
+        newUser.setAddress(Collections.singletonList(""));
+        newUser.setPhone("");
+
+        User savedUser = userRepository.save(newUser);
+
+        return convertData.convertUserToUserDTO(savedUser);
     }
 
 }
